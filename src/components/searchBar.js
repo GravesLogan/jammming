@@ -2,12 +2,12 @@ import React, { use, useState } from 'react';
 import styles from '../styles/SearchBar.module.css';
 
 
-export default function SearchBar() {
+export default function SearchBar(props) {
 
-    const [search, setSearch] = useState('');
+    const {handleSearchChange} = props;
 
     function handleOnChange(e) {
-        setSearch(e.target.value);
+        handleSearchChange(e.target.value);
     }
 
     function handleOnSubmit(e) {
