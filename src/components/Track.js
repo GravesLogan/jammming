@@ -13,9 +13,9 @@ export default function Track(props) {
 
     return (
         <div className={styles.track}>
-            <li>
+            <li className={styles.trackItem}>
                 <h3>{trackObj.name}</h3>
-                 {trackObj.artist} | {trackObj.album}
+                {trackObj.artist} | {trackObj.album}
             </li>
             <button className={styles.addButton} onClick={handleAdd}>+</button>
         </div>

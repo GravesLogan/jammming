@@ -14,8 +14,10 @@ code {
 
 div img {
   position: absolute;
-  top: 0;
-  left: -100px;
+  top: 85px;
+  left: 0px;
+  min-height: 1861px;
+  object-fit: cover;
   z-index: -5;
   width: 150%;
   filter: blur(1px);

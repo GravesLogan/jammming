@@ -17,11 +17,11 @@ function App() {
   const [authToken, setAuthToken] = useState('');
 
   const getToken = async code => {
-    const clientId = '2236599dff70488ab94ff5fba9e4d227';
+    const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
     const redirectUri = 'http://127.0.0.1:3000/';
     
     // stored in the previous step
-    const codeVerifier = localStorage.getItem('code_verifier');
+    const codeVerifier = sessionStorage.getItem('code_verifier');
 
     const url = "https://accounts.spotify.com/api/token";
     const payload = {
@@ -41,7 +41,7 @@ function App() {
     const body = await fetch(url, payload);
     const response = await body.json();
 
-    localStorage.setItem('access_token', response.access_token);
+    sessionStorage.setItem('access_token', response.access_token);
     setAuthToken(response.access_token);
   }
 
@@ -52,11 +52,16 @@ function App() {
     const urlParams = new URLSearchParams(window.location.search);
     let code = urlParams.get('code');
 
-    if (code) {
-      console.log(`Code is: ${code}`);
-      getToken(code);
-    } else {
-      getSpotifyAuthorization();
+    if (!authToken) {
+      if (sessionStorage.getItem('access_token')) {
+        setAuthToken(sessionStorage.getItem('access_token'));
+      } else {
+        if (code) {
+          getToken(code);
+        } else {
+          getSpotifyAuthorization();
+        }
+      }
     }
   }, []);
   
@@ -72,14 +77,22 @@ function App() {
     setPlaylist([track, ...playlist]);
   }
 
+  function clearPlaylist() {
+    setPlaylist([]);
+  }
+
+  function handleRemove(index) {
+    playlist.splice(index, 1);
+    setPlaylist([...playlist]);
+  }
 
   return (
-    <div className={styles}>
-      <header><h1 class='regular'>Ja</h1><h1 class='color'>mmm</h1><h1 class='regular'>ing</h1></header>
+    <div>
+      <header><h1 className='regular'>Ja</h1><h1 className='color'>mmm</h1><h1 className='regular'>ing</h1></header>
       <SearchBar handleQueryResults={handleQueryResults} authToken={authToken} />
-      <div class='result-playlist-container'>
+      <div className='result-playlist-container'>
         <SearchResults queryResults={queryResults} handlePlaylist={handlePlaylist}/>
-        <Playlist authToken={authToken} playlist={playlist}/>
+        <Playlist authToken={authToken} playlist={playlist} clearPlaylist={clearPlaylist} handleRemove={handleRemove} />
       </div>
     </div>
   );

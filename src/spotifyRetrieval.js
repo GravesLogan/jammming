@@ -24,14 +24,14 @@ export async function getSpotifyAuthorization() {
     const codeChallenge = base64encode(hashed);
 
 
-    const clientId = '2236599dff70488ab94ff5fba9e4d227';
+    const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
     const redirectUri = 'http://127.0.0.1:3000/';
 
     const scope = 'playlist-modify-public user-read-private user-read-email';
     const authUrl = new URL("https://accounts.spotify.com/authorize")
 
     // generated in the previous step
-    window.localStorage.setItem('code_verifier', codeVerifier);    
+    window.sessionStorage.setItem('code_verifier', codeVerifier);    
 
     const params =  {
         response_type: 'code',

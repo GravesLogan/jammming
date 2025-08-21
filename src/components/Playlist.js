@@ -5,7 +5,7 @@ import styles from '../styles/Playlist.module.css';
 
 export default function Playlist(props) {
 
-    const {authToken, playlist} = props;
+    const {authToken, playlist, clearPlaylist, handleRemove} = props;
     const [playlistName, setPlaylistName] = useState('');
 
 
@@ -40,7 +40,6 @@ export default function Playlist(props) {
     // Creates a spotify playlist
     async function createPlaylist(name, uid) {
         try {
-            console.log(`uid is ${uid}`);
             const response = await fetch(`https://api.spotify.com/v1/users/${uid}/playlists`, {
                 method: 'POST',
                 headers: {
@@ -53,7 +52,6 @@ export default function Playlist(props) {
 
             if (response.ok) {
                 const jsonResponse = await response.json();
-                console.log(jsonResponse);
                 return jsonResponse.id;
             }
         } catch (error) {
@@ -72,9 +70,6 @@ export default function Playlist(props) {
                     'uris': playlist.map(track => track.uri)
                 })
             })
-            if (response.ok) {
-                console.log('Songs added successfully');
-            }
         } catch (error) {
             console.log(error);
         }
@@ -86,6 +81,14 @@ export default function Playlist(props) {
         const uid = await getUserID();
         const playlistID = await createPlaylist(playlistName, uid);
         await addTracksToPlaylist(playlistID);
+        clearPlaylist(); // Clear the playlist after saving
+        setPlaylistName(''); // Reset the playlist name input
+        document.getElementById('playlist').value = ''; // Clear the input field after saving
+    }
+
+
+    function handlePlaylistRemove(index) {
+        handleRemove(index);
     }
     
 
@@ -96,10 +99,13 @@ export default function Playlist(props) {
             <ul className={styles.playlistTracks}>
                 {playlist.map((track, index) => {
                     return (
-                        <li className={styles.playlistItem} key={index}>
-                            <h3>{track.name}</h3>
-                            {track.artist} | {track.album}
-                        </li>
+                        <div className={styles.row} key={index}>
+                            <li>
+                                <h3>{track.name}</h3>
+                                {track.artist} | {track.album}
+                            </li>
+                            <button className={styles.removeButton} onClick={() => handlePlaylistRemove(index)}>-</button>
+                        </div>
                     )
                 })}
             </ul>

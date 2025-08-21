@@ -4,7 +4,14 @@
     align-items: center;
     color: white;
     width: 40%;
+    max-height: 1500px;
+    overflow-y: scroll;
     background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+.playlist::-webkit-scrollbar {
+  display: none;
 }
 
 
@@ -27,6 +34,7 @@
     width: 50%;
     background-color: #00ff99;
     cursor: pointer;
+    margin-top: 20px;
 }
 
 .playlistTracks {
@@ -36,14 +44,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90%;
+    width: 100%;
 }
 
-.playlistItem {
+.removeButton {
+    border: none;
+    border-radius: 2em;
+    font-size: 3em;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+
+.row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 10px;
+    padding: 10px;
     border-bottom: 1px solid #ccc;
-    width: 100%;
+    width: 90%;
 }

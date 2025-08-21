@@ -5,5 +5,11 @@
     text-align:center;
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
-    width: 40%
+    width: 40%;
+    max-height: 1500px;
+    overflow-y: scroll;
+}
+
+.searchResults::-webkit-scrollbar {
+    display: none;
 }
