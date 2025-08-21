@@ -18,7 +18,7 @@ function App() {
 
   const getToken = async code => {
     const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-    const redirectUri = 'http://127.0.0.1:3000/';
+    const redirectUri = 'https://graveslogan.github.io/jammming/';
     
     // stored in the previous step
     const codeVerifier = sessionStorage.getItem('code_verifier');

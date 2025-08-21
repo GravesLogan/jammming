@@ -25,7 +25,7 @@ export async function getSpotifyAuthorization() {
 
 
     const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-    const redirectUri = 'http://127.0.0.1:3000/';
+    const redirectUri = 'https://graveslogan.github.io/jammming/';
 
     const scope = 'playlist-modify-public user-read-private user-read-email';
     const authUrl = new URL("https://accounts.spotify.com/authorize")
