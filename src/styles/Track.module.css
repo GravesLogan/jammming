@@ -1,0 +1,17 @@
+.track {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    width: 90%;
+}
+
+.addButton {
+    border: none;
+    border-radius: 2em;
+    font-size: 3em;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+}

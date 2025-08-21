@@ -8,13 +8,13 @@ import SearchResults from './components/SearchResults';
 import Track from './components/Track';
 import Tracklist from './components/Tracklist';
 
+import styles from './App';
+
 
 import { getSpotifyAuthorization } from './spotifyRetrieval';
 
 function App() {
   const [authToken, setAuthToken] = useState('');
-
-
 
   const getToken = async code => {
     const clientId = '2236599dff70488ab94ff5fba9e4d227';
@@ -61,16 +61,26 @@ function App() {
   }, []);
   
 
-
+  // Handles the results from the spotify search.
   const [queryResults, setQueryResults] = useState([]);
   function handleQueryResults(results) {
     setQueryResults(results);
   }
 
+  const [playlist, setPlaylist] = useState([]);
+  function handlePlaylist(track) {
+    setPlaylist([track, ...playlist]);
+  }
+
+
   return (
-    <div>
+    <div className={styles}>
+      <header><h1 class='regular'>Ja</h1><h1 class='color'>mmm</h1><h1 class='regular'>ing</h1></header>
       <SearchBar handleQueryResults={handleQueryResults} authToken={authToken} />
-      <Tracklist queryResults={queryResults}/>
+      <div class='result-playlist-container'>
+        <SearchResults queryResults={queryResults} handlePlaylist={handlePlaylist}/>
+        <Playlist authToken={authToken} playlist={playlist}/>
+      </div>
     </div>
   );
 }

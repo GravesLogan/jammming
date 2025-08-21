@@ -1,11 +1,23 @@
 import React from 'react';
 
+import styles from '../styles/Track.module.css';
 
 export default function Track(props) {
     const {trackObj} = props;
+    const {handlePlaylist} = props;
+
+
+    function handleAdd(e) {
+        handlePlaylist(trackObj);
+    }
+
     return (
-        <li>
-            {trackObj.name} made by {trackObj.artist} in the {trackObj.album}.
-        </li>
+        <div className={styles.track}>
+            <li>
+                <h3>{trackObj.name}</h3>
+                 {trackObj.artist} | {trackObj.album}
+            </li>
+            <button className={styles.addButton} onClick={handleAdd}>+</button>
+        </div>
     )
 }

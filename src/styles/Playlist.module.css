@@ -1,0 +1,49 @@
+.playlist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    width: 40%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+.playlistName {
+    width: 90%;
+    text-align: center;
+    font-size: 2em;
+    color: white;
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid white;
+    margin: 10px 0;
+}
+
+
+.savePlaylistButton {
+    border: none;
+    border-radius: 2em;
+    padding: 7px;
+    width: 50%;
+    background-color: #00ff99;
+    cursor: pointer;
+}
+
+.playlistTracks {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+}
+
+.playlistItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+}

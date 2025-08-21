@@ -5,6 +5,10 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <App />
+    <div>
+        <App />
+        <img src='/cartridge.jpg' alt='Cartridge' className='cartridge-image' />
+    </div>
+    
 );
 

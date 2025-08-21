@@ -52,8 +52,8 @@ export default function SearchBar(props) {
     
 
     return (
-        <div>
-            <form onSubmit={handleOnSubmit}>
+        <div className={styles.searchBar}>
+            <form className={styles.form} onSubmit={handleOnSubmit}>
                 <input id='search' name='search' placeholder='search by title, name, genre, etc...' onChange={handleOnChange}></input>
                 <button type='submit'>Search</button>
             </form>
