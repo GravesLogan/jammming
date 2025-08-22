@@ -7,8 +7,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <div>
         <App />
-        <img src='cartridge.jpg' alt='Cartridge' className='cartridge-image' />
+        <div className='image-wrapper'>
+            <img src='cartridge.jpg' alt='Cartridge' className='cartridge-image' />
+        </div>
     </div>
     
 );
 
+ 
